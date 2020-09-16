@@ -41,19 +41,23 @@ namespace WindowsFormsApp5
 
         private void button2_Click(object sender, EventArgs e)
         {
-            thread.Start();
+            // thread.Start();
+            Thread myThread = new Thread(Worker); //Создаем новый объект потока (Thread)
+            myThread.Start(); //запускаем поток
         }
         private void Worker()
         {
             string str = textBox1.Text;
-            textBox2.Text = " ";
+            
+             textBox2.Text = " ";
             foreach (string s in System.IO.File.ReadAllLines(filename))
             {
                 if (s == str)
                 {
                     foreach (char c in s)
                     {
-                        textBox2.Text += c + ".";
+                        
+                        textBox2.Text += c + " ";
                     }
                 }
             }
